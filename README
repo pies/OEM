@@ -1,8 +1,8 @@
 OEM PHP Framework
 -----------------
 
-OEM is a rather simple, Public Domain licenced framework for programmers needing to create medium-complexity, custom web applications. It supports multi-domain, multi-app setups from the same codebase and is built using modern PHP features, such as namespaces and auto-loading. As of August 2012 The project has just started, although the code has been already used in several projects of my own.
+OEM is a rather simple, Public Domain licenced framework for programmers needing to create medium-complexity, custom web applications. It supports multi-domain, multi-app setups from the same codebase and is built using modern PHP features, such as namespaces and auto-loading. 
+
+As of August 2012 the project has just started, although the code has been already used in several projects of my own. If you wish to contribute, please use Github https://github.com/pies/OEM-3 . Thanks and good luck :)
 
 My name is Michal Tatarynowicz, I'm a web developer. In the past I've started and lead the CakePHP project.
-
-If you wish to contribute, please use Github https://github.com/pies/OEM-3 . Thanks and good luck :)
