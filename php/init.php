@@ -13,13 +13,13 @@ class Site extends \Core\Framework {
 	const DateTimeFormat  = 'd.m.Y H:i';
 
     static $SwitchDomain = array(
-		'www.ip.local'       => 'ip.local',
-		'www.admin.ip.local' => 'admin.ip.local',
+		'example.com' => 'www.example.com',
+		'www.admin.example.com' => 'admin.example.com',
 	);
 
     static $ResolveApp = array(
-		'ip.local'       => 'Site',
-		'admin.ip.local' => 'Admin',
+		'www.example.com'   => 'Site',
+		'admin.example.com' => 'Admin',
 	);
 
     static $DefaultApp = 'Site';
@@ -37,7 +37,7 @@ class Site extends \Core\Framework {
 	public static function SendEmail($to_name, $to_email, $subject, $message) {
 		$site = config()->site;
 		$from = config()->email;
-		$html = render('user/email/layout', compact('subject','message'));
+		$html = render('Email/Layout', compact('subject','message'));
 		
 		if (IS_LIVE) {
 			$mailer = new \Core\Email($site->name, $site->email);
@@ -52,14 +52,6 @@ class Site extends \Core\Framework {
 	/**
 	 * @return \Core\XMLConfig
 	 */
-	public static function Categories() {
-		return static::LoadConfigFile('categories');
-	}	
-
-	public static function Category($id) {
-		return static::LoadConfigFile('categories')->find("//category[@id='{$id}']");
-	}
-
 	public static function Users() {
 		return static::LoadConfigFile('users');
 	}
