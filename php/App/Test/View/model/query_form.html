@@ -1,0 +1,10 @@
+<div class="Query">
+<? if ($button): ?>
+	<form action="<?=$url?>" method="post">
+		<textarea cols="95" rows="<?=  substr_count(trim($sql),"\n")+2?>" name="sql"><?=htmlspecialchars($sql)?></textarea><br/>
+		<input type="submit" value="<?=$button?>" class="Submit"/>
+	</form>
+<? else: ?>
+	<pre><?=htmlspecialchars($sql)?></pre>
+<? endif ?>
+</div>

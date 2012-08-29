@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/model.dtd
+
+    <!DOCTYPE model SYSTEM "model.dtd">
+-->
+
+<!ELEMENT model (table|template|import)*>
+<!ATTLIST model
+    collate CDATA #IMPLIED
+    charset CDATA #IMPLIED
+    engine CDATA #IMPLIED
+  >
+
+<!ELEMENT import EMPTY>
+<!ATTLIST import
+	name CDATA #REQUIRED
+>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT template (index*,unique*,field*)>
+<!ATTLIST template
+    name CDATA #REQUIRED
+    primary_key CDATA #IMPLIED
+    index CDATA #IMPLIED
+    unique CDATA #IMPLIED
+    default CDATA #IMPLIED
+    size CDATA #IMPLIED
+    null CDATA #IMPLIED
+    type CDATA #IMPLIED
+    auto_increment CDATA #IMPLIED
+    signed CDATA #IMPLIED
+    extends CDATA #IMPLIED
+    class CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT table (index*,unique*,field*)>
+<!ATTLIST table
+    name CDATA #REQUIRED
+    primary_key CDATA #IMPLIED
+    null CDATA #IMPLIED
+    collate CDATA #IMPLIED
+    charset CDATA #IMPLIED
+    engine CDATA #IMPLIED
+    extends CDATA #IMPLIED
+    class CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT field EMPTY>
+<!ATTLIST field
+    name CDATA #IMPLIED
+    index CDATA #IMPLIED
+    unique CDATA #IMPLIED
+    default CDATA #IMPLIED
+    size CDATA #IMPLIED
+    null CDATA #IMPLIED
+    type CDATA #IMPLIED
+    auto_increment CDATA #IMPLIED
+    extends CDATA #IMPLIED
+  >
+
+<!ELEMENT index (#PCDATA)>
+
+<!ELEMENT unique (#PCDATA)>

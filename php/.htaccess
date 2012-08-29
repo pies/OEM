@@ -1,0 +1,5 @@
+Order Deny,Allow
+Deny from all
+
+ErrorDocument 403 "Software failure. Press left mouse button to continue.<br/>Guru Meditation #00000004.0000AAC0"
+

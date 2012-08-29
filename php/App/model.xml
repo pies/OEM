@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE model SYSTEM "model.dtd">
+<model engine="InnoDB" charset="utf8" collate="utf8_general_ci">
+
+	<import name="model-templates"/>
+	
+	<table name="item" primary_key="id">
+		<!-- technical -->
+		<field name="id"                extends="item_id" auto_increment="y"/>
+		<field extends="created"/>
+		<field extends="updated"/>
+		<field extends="author_id"/>
+		<!-- general -->
+		<field name="name"              extends="text"/>
+		<field name="description"       extends="long_text"/>
+	</table>
+
+</model>

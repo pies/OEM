@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<site>
+		<name>Site Name</name>
+		<url>www.example.com</url>
+		<copyright>Copyright 2012 Site Name</copyright>
+		<email>example@example.com</email>
+
+		<title>Welcome to Site Name</title>
+		<author>Author Name, www.example.com</author>
+		<keywords>...</keywords>
+		<description>...</description>
+
+		<timezone>Europe/Warsaw</timezone>
+		<password_salt>your-random-password-salt-here</password_salt>
+		<google_analytics>UA-...</google_analytics>
+	</site>
+
+	<database>
+		<dev>
+			<host>127.0.0.1</host>
+			<name>test</name>
+			<login>test</login>
+			<password>test</password>
+		</dev>
+		<live>
+			<host>db.example.com</host>
+			<name>test</name>
+			<login>test</login>
+			<password>test</password>
+		</live>
+	</database>
+
+</config>

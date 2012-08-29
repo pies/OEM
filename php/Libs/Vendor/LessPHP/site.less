@@ -1,0 +1,128 @@
+@import 'reset.css';
+
+.Gradient(@from: #DDD; @to: #FFF) {
+	background:-webkit-gradient(linear, left bottom, left top, color-stop(0.18, @from), color-stop(0.88, @to));
+	background:-moz-linear-gradient(center bottom, @from 24%, @to 62%);
+}
+
+.BorderRadius(@size:0) {
+    border-radius: @size;
+    -moz-border-radius: @size;
+    -webkit-border-radius: @size;
+}
+
+.BoxShadow {
+	box-shadow: 1px 1px 4px #888;
+	-moz-box-shadow: 1px 1px 4px #888;
+	-webkit-box-shadow: 1px 1px 4px #888;
+}
+
+.ThinRoundedBorder {
+	border:@ThinBorder solid transparent;
+	.BorderRadius(5px 5px 0 0);
+}
+
+
+@PageWidth: 900px;
+@ThinBorder: 1px;
+@BorderedWidth: @PageWidth - (2 * @ThinBorder);
+@HoverBarHeight: 20px;
+@LightGray: #EEE;
+
+
+* { font-family:Arial,sans-serif; font-size:13px; }
+H1,H2,H3,H4,H5 { font-weight:bold; margin:0 0 .5em 0; }
+H1 { font-size:115%; font-weight: bold; padding:.5em 0 .3em; }
+P { padding-bottom:.3em; }
+INPUT.Submit { padding:1px 2px; }
+
+.Layout {
+	width:@PageWidth;
+	margin:1em auto;
+}
+
+@import 'edit/bar.less';
+@import 'edit/nav.less';
+
+
+.Editable {
+	white-space: pre;
+	border:1px dashed transparent;
+
+	:HOVER {
+		border-color:lightblue;
+	}
+}
+
+.Footer {
+	margin-top:5px;
+	border-top:1px solid #AAA;
+	background-color:#DDD;
+}
+
+.ElementHoverBarWrapper {
+	border:@ThinBorder solid transparent;
+	.BorderRadius(5px);
+	border-top:0;
+}
+
+.ElementHoverBar {
+	.ThinRoundedBorder;
+	position:absolute;
+	margin-top:-@HoverBarHeight;
+	margin-left:-1px;
+	height:@HoverBarHeight;
+	width:@BorderedWidth;
+	background-color:lightblue;
+}
+
+.ElementHoverBarWrapper.Hover,
+.ElementHoverBar {
+	border-color:lightblue;
+}
+
+.Dragged {
+
+	.ElementHoverBar {
+		background-color: #DDD;
+	}
+
+	.ElementHoverBarWrapper.Hover,
+	.ElementHoverBar {
+		border-color: #DDD;
+	}
+}
+
+
+.PageStructure {
+
+	> UL {
+		width:200px;
+		overflow:hidden;
+		border:1px solid #AAA;
+		background-color:@LightGray;
+		padding:10px;
+		margin:1em;
+
+		UL {
+			margin-left:15px;
+		}
+
+		LI A {
+			display:block;
+			padding:5px;
+			background-color:@LightGray;
+			border:1px solid #DDD;
+			border-color:#FFF #DDD #DDD #FFF;
+			text-decoration: none;
+			color:#000;
+			cursor:move;
+		}
+	}
+
+
+	.Placeholder {
+		background-color: #CCC;
+	}
+
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE model SYSTEM "model.dtd">
+<model engine="InnoDB" charset="utf8" collate="utf8_general_ci">
+
+	<template name="id" type="int" size="5" signed="n" null="n" class="Int"/>
+		<template name="item_id" extends="id"/>
+		<template name="company_id" extends="id"/>
+		<template name="collection_id" extends="id"/>
+		<template name="filter_id" extends="id"/>
+		<template name="author_id" extends="id"/>
+	
+	<template name="date" type="int" size="4" signed="n" null="n" class="Date"/>
+		<template name="created" extends="date"/>
+		<template name="updated" extends="date"/>
+
+	<template name="choice" type="enum" class="Choice" null="n"/>
+		<!--template name="user_status" extends="choice" size="new,confirmed,suspended" default="new"/>
+		<template name="publish_status" extends="choice" size="live,edit,prev" default="live"/>
+		<template name="moderation_status" extends="choice" size="new,accepted,removed" default="new"/-->
+
+	<template name="long_text" type="text" null="n" class="Text"/>
+	<template name="text" type="varchar" size="250" null="n" class="Text"/>
+		<template name="short_text" extends="text" size="100"/>
+		<template name="email" extends="text" class="Email"/>
+
+	<template name="ip" type="int" size="4" signed="y" null="n" class="IP"/>
+
+	<template name="data" type="blob" null="n"/>
+	<template name="amount" type="decimal" size="5,2" null="n"/>
+	<template name="hash" type="char" size="32" null="n"/>
+		<template name="password" extends="hash"/>
+		<template name="secret" extends="hash" size="16"/>
+
+	<template name="byte" type="int" size="1" default="0" signed="n" null="n"/>
+		<template name="switch" extends="byte"/>
+		<template name="price" extends="byte" size="3"/>
+
+</model>

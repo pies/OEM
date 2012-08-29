@@ -1,0 +1,68 @@
+.Nav {
+
+	border-bottom:1px solid #AAA;
+	margin-bottom:5px;
+
+	> UL {
+		width:100%;
+		background-color:#EEE;
+		display: table;
+
+		> LI {
+			float: left;
+			margin:0;
+
+			> A {
+				display: block;
+				white-space: nowrap;
+			}
+		}
+	}
+
+	A {
+		color:#14E;
+		width:70px;
+		display: block;
+		padding:5px 8px;
+
+		:HOVER {
+			background-color:#CCC;
+		}
+
+	}
+
+	.Submenu > A {
+		padding-right:15px;
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAHCAAAAAAUx4O/AAAAAnRSTlMAAHaTzTgAAAAaSURBVAjXY0higIOkJCRmEhIzCZsoQi2cBQACYAYhyp37uAAAAABJRU5ErkJggg==");
+		background-repeat: no-repeat;
+		background-position: right 10px;
+	}
+
+	LI.Active > A {
+		background-color:#DDD;
+		color:#000;
+		text-decoration: none;
+	}
+
+	LI UL {
+		.BoxShadow;
+		width:100px;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		background-color:#EEE;
+		margin-left:5px;
+		z-index: 100;
+
+		UL {
+			margin-left: 0;
+		}
+
+		A {
+			display: block;
+			width: auto;
+			padding:5px 8px;
+		}
+	}
+
+}

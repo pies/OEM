@@ -1,0 +1,38 @@
+<? $form = new \Html\Form($_POST) ?>
+
+<style type="text/css">
+	
+	FORM.well {
+		display: table;
+		margin: 3em auto;
+	}
+	
+	FORM.well TH {
+		font-size: 150%;
+		padding-bottom: 1em;
+	}
+	
+</style>
+
+<?=$form->start('/default/login', 'post', array('class'=>'well'))?>
+	
+<table>
+	<tr>
+		<th colspan="2">Logowanie</th>
+	</tr>
+	<tr<?=$status=='error'?' class="control-group error"':''?>>
+		<td>Login:</td>
+		<td><?=$form->input('login')?></td>
+	</tr>
+	<tr<?=$status=='error'?' class="control-group error"':''?>>
+		<td>Hasło:</td>
+		<td><?=$form->password('password')?></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><?=$form->submit('Zaloguj się', array('class'=>'btn btn-primary'))?></td>
+	</tr>
+</table>
+	
+
+<?=$form->end()?>

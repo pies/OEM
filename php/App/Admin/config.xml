@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<routes>
+		<route match="/" last="true">/default/index</route>
+	</routes>
+</config>

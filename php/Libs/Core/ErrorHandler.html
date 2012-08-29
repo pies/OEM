@@ -1,0 +1,49 @@
+<script type="text/javascript">
+var get  = function(elem) { return document.getElementById('debug_s_'+elem.id.substring(8)) }
+var show = function(elem) { get(elem).style.display = 'block' }
+var hide = function(elem) { get(elem).style.display = 'none' }
+</script>
+<style type="text/css">
+TABLE.Snippet { position:absolute; display:none; background-color:#FFF; margin:.2em .4em; padding:.4em .6em; border:1px solid #DDD; border-color:#DDD #CCC #CCC #CCC; border-width:1px 2px 2px 1px; }
+TABLE.Snippet TD { font-family:Consolas; font-size:12px; padding:2px 4px 1px; }
+TABLE.Snippet TH { text-align:right; font-weight:normal; color:#BBB; padding-right:.5em; font-size:90%; }
+TABLE.Snippet TR.Current { background-color:#FFA; }
+.Toggle { cursor:pointer; border-bottom:1px dotted #888; }
+</style>
+
+<div style="background-color:#FAFAFA;color:#000;padding:.2em .4em;font-family:Calibri,sans-serif;border:1px solid #EEE">
+	<strong><?=$name?>:</strong>
+	<span style="background-color:#FF8"><?=$str?></span>&nbsp;
+	<span style="color:#888">in</span> <?=$first['call']?> <span style="font-size:smaller;color:#888"><?=$first['place']?></span>
+
+<?
+$indent = 15;
+$id = 1;
+?>
+
+<? foreach ($trace as $step): ?>
+
+	<div>
+		<span style="color:#888;font-size:smaller">#<?=$id?></span>
+		<span><?=$step['call']?></span>
+		<span onmouseover="show(this)" onmouseout="hide(this)" id="debug_a_<?=$id?>" style="font-size:smaller;color:#888" class="Toggle"><?=$step['place']?></span>
+
+	<? if (isset($step['snippet']) && is_array($step['snippet'])): ?>
+		<table class="Snippet" id="debug_s_<?=$id?>">
+			<? foreach ($step['snippet'] as $kk=>$vv): $style = $kk == $step['line']? ' class="Current"': ''; ?>
+			<tr<?=$style?>>
+				<td><span><?=trim($vv)?></span></td>
+			</tr>
+			<? endforeach ?>
+		</table>
+	<? endif ?>
+	</div>
+
+<?
+$id++;
+$indent += 15;
+?>
+
+<? endforeach ?>
+
+</div>
