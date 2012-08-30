@@ -115,13 +115,13 @@ class Framework {
 		return self::LoadConfigFile('config', true);
 	}
 
-    /**
-     * @static
-     * @param string $name Name of the XML file to load.
-     * @param bool $extend Should the base file be extended with app-specific extension.
-     * @return XMLConfig
-     */
-    protected static function LoadConfigFile($name, $extend=false) {
+	/**
+	 * @static
+	 * @param string $name Name of the XML file to load.
+	 * @param bool $extend Should the base file be extended with app-specific extension.
+	 * @return XMLConfig
+	 */
+	protected static function LoadConfigFile($name, $extend=false) {
 		if (empty(self::$configs[$name])) {
 			$base = DIR_APP."/{$name}.xml";
 			$extension = DIR_CURRENT_APP."/{$name}.xml";
@@ -175,16 +175,15 @@ class Framework {
 		return sprintf('%.3f', round( (float) microtime(true) - (float) self::$start , 3)).'s';
 	}
 
-
 	/**
 	 * Loads, caches and returns the model.xml file
 	 *
 	 * @uses php/model.xml
-     * @static
-     * @param string $name
-     * @return XML
-     */
-    public static function Model($name=null) {
+	 * @static
+	 * @param string $name
+	 * @return XML
+	 */
+	public static function Model($name=null) {
 		if (empty(self::$model)) {
 			$path = DIR_APP.'/model.xml';
 			//$cache_path = DIR_APP.'/Shared/Config/Cache/model.xml.cache';
@@ -229,7 +228,7 @@ class Framework {
 			ini_set('xdebug.collect_params', '0');
 		}
 
-        return true;
+		return true;
 	}
 
 
@@ -475,7 +474,7 @@ class Framework {
 		$ua = $_SERVER['HTTP_USER_AGENT'];
 
 		$is_opera = strpos($ua, 'Opera') !== false;
-		$is_ie =  !$is_opera && (strpos($ua, 'Mozilla/4.0 (compatible; MSIE ') !== 0);
+		$is_ie = !$is_opera && (strpos($ua, 'Mozilla/4.0 (compatible; MSIE ') !== 0);
 
 		if ($is_ie && !$is_opera) {
 			$version = (float)substr($ua, 30);
@@ -486,7 +485,7 @@ class Framework {
 		}
 
 		ob_start("ob_gzhandler");
-        return true;
+		return true;
 	}
 
 	/**

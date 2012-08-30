@@ -16,7 +16,7 @@
 		<password_salt>your-random-password-salt-here</password_salt>
 		<google_analytics>UA-...</google_analytics>
 	</site>
-
+<!--
 	<database>
 		<dev>
 			<host>127.0.0.1</host>
@@ -31,5 +31,5 @@
 			<password>test</password>
 		</live>
 	</database>
-
+-->
 </config>

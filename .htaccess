@@ -18,9 +18,9 @@ RewriteCond %{REQUEST_FILENAME} -f
 RewriteCond %{REQUEST_FILENAME} /css/.+\.less
 RewriteRule ^(.*)$ css/less.php?URL=$1 [QSA,L]
 
+# Parse .js files as PHP
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteCond %{REQUEST_FILENAME} /js/.+\.js
-#RewriteCond %{REQUEST_FILENAME} /js/[a-z0-9_\-\/]+\.js
 RewriteRule ^(.*)$ js/index.php?URL=$1 [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
