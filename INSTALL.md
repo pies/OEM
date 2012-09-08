@@ -2,7 +2,7 @@
 
 ### <a name="config-files">Config files</a>
 
-An OEM installation supports multiple sites running within the same directory. 
+An OEM installation supports multiple sites running within the same file structure. 
 The default app is called Site and its files are in the `/php/App/Site` 
 directory. Each installation has a main configuration file, `/php/config.xml`, 
 as well as an app-specific configuration file, which in the case of the Site app 
@@ -47,13 +47,15 @@ page titles, copyright notices, game rules etc.
 ### <a name="database">Database configuration</a>
 
 The database configuration is located in the main configuration file, `/php/config.xml`.
-By default it's commented out and the site can work just fine without it.
+By default it's commented out and the site can work just fine without it. The default
+database type is MySQL and the framework wasn't tested with any other database, although
+it's based on PDO, so should be relatively easy to use databases PDO supports.
 
 In the standard installation OEM supports two database configurations -- LIVE and DEV.
 The correct configuration is provided by `Site::DatabaseConfiguration()` (inherited 
 from `Core\Framework`) based on whatever `Site::IsLive()` returns -- if it 
-returns true the `config -> database -> live` is used, and otherwise it's 
-`config -> database -> dev`. You can customize this behavior by creating either of 
+returns true the `config->database->live` is used, and otherwise it's 
+`config->database->dev`. You can customize this behavior by creating either of 
 those methods in the `Site` class.
 
 Note that due to the inheritance of configuration files, a database configuration 

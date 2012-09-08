@@ -18,13 +18,13 @@
 	</site>
 <!--
 	<database>
-		<dev>
+		<dev type="mysql">
 			<host>127.0.0.1</host>
 			<name>test</name>
 			<login>test</login>
 			<password>test</password>
 		</dev>
-		<live>
+		<live type="mysql">
 			<host>db.example.com</host>
 			<name>test</name>
 			<login>test</login>

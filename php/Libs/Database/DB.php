@@ -32,7 +32,8 @@ class DB {
 
 		try {
 			$port = $config->port? ";port={$config->port}": '';
-			$conn  = "mysql:host={$config->host};dbname={$config->name}{$port}";
+			$type = $config['type']? $config['type']: 'mysql';
+			$conn  = "{$type}:host={$config->host};dbname={$config->name}{$port}";
 			$login = "{$config->login}";
 			$pass  = "{$config->password}";
 			$opts  = array(
@@ -41,7 +42,7 @@ class DB {
 			);
 			
 			self::$pdo = new PDO($conn, $login, $pass, $opts);
-			self::query("SET NAMES utf8");
+			if ($type == 'mysql') self::query("SET NAMES utf8");
 			return self::$pdo;
 		}
 		catch (Exception $e) {
