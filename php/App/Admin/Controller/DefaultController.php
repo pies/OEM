@@ -7,7 +7,6 @@ class DefaultController extends AppController {
 		return $this->render('Page/Index');
 	}
 
-	
 	public function login() {
 		if (isset($_POST['login'])) {
 			$users = \Site::Users();
