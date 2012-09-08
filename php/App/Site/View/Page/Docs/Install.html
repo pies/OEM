@@ -1,15 +1,9 @@
 <?=$this->render('Page/Docs/Menu')?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html>
-	<head>
-		<title></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	</head>
-	<body>
-		<div>TODO write content</div>
-	</body>
-</html>
+
+<ul class="nav nav-list" style="width: 180px; float: right">
+  <li class="nav-header">Choose topic:</li>
+  <li><a href="#config-files">Config files</a></li>
+  <li><a href="#database">Database</a></li>
+</ul>
+
+<?=markdown_file(DIR_ROOT.'/INSTALL.md')?>

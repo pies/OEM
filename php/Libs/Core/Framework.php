@@ -30,7 +30,7 @@ class Framework {
 		self::$start = microtime(true);
 
 		define('IS_HTTPS', (bool) @$_SERVER['HTTPS']);
-		define('IS_LIVE', self::IsLive());
+		define('IS_LIVE', static::IsLive());
 
 		if (!defined('DEBUG')) define('DEBUG', !IS_LIVE);
 
@@ -62,7 +62,7 @@ class Framework {
 		self::Urls();
 		Assert::Init(DEBUG);
 		ErrorHandler::Init();
-		self::Database();
+		static::Database();
 
 	}
 	
@@ -275,7 +275,7 @@ class Framework {
 		)));
 	}
 
-	private static function IsLive() {
+	protected static function IsLive() {
 		if (empty($_SERVER['HTTP_HOST'])) return true;
 		$host = $_SERVER['HTTP_HOST'];
 		$suffixes = array('localhost','local');
@@ -399,6 +399,12 @@ class Framework {
 		return $host? "{$protocol}://{$host}".static::UrlRoot(): false;
 	}
 
+	
+	protected static function DatabaseConfiguration() {
+		return IS_LIVE?
+			self::Config()->database->live:
+			self::Config()->database->dev;
+	}
 
 	/**
 	 * Connects to the database.
@@ -406,11 +412,8 @@ class Framework {
 	 * @uses config.xml
 	 * @return bool Success
 	 */
-	private static function Database() {
-		$config = IS_LIVE?
-			self::Config()->database->live:
-			self::Config()->database->dev;
-
+	protected static function Database() {
+		$config = static::DatabaseConfiguration();
 		return $config? DB::connect($config): false;
 	}
 

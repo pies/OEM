@@ -3,7 +3,7 @@
 		<a class="brand" href="/docs">OEM</a>
 		<ul class="nav">
 			<li<?=$this->url == '/docs' || $this->url == '/'? ' class="active"': ''?>><a href="/docs">Readme</a></li>
-			<li<?=$this->url == '/docs/install'? ' class="active"': ''?>><a href="/docs/install">Installation</a></li>
+			<li<?=strpos($this->url, '/docs/install')!==false? ' class="active"': ''?>><a href="/docs/install">Installation</a></li>
 		</ul>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-# OEM PHP Framework
+## Welcome to OEM
 
 OEM is a rather simple, liberally licenced framework for programmers needing to 
 create medium-complexity, custom web applications. The name "OEM" stands for 
