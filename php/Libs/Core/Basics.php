@@ -5,6 +5,7 @@ use Core\View;
 use Core\Email;
 use Core\Str;
 use Core\XMLConfig;
+use Vendor\Markdown;
 
 /* SHORTCUTS */
 
@@ -100,6 +101,20 @@ function _FILES($key, $default=null) {
 	return isset($_FILES[$key])? $_FILES[$key]: $default;
 }
 
+function markdown($text) {
+	# Setup static parser variable.
+	static $parser;
+	if (!isset($parser)) {
+		$parser = new Markdown;
+	}
+
+	# Transform text using parser.
+	return $parser->transform($text);
+}
+
+function markdown_file($path) {
+	return markdown(file_get_contents($path));
+}
 
 /* DEBUG TOOLS */
 

@@ -6,30 +6,17 @@
 	<title><?=config()->site->title?></title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<!--link rel="stylesheet" href="/css/site.css" type="text/css" /-->
-	<link rel="stylesheet" href="/css/bootstrap/bootstrap.less" type="text/css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="/css/site.less" type="text/css" />
 	
 	<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/js/jquery.nestedAccordion.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-	<div id="container">
-		
-		<header class="jumbotron subhead" id="overview">
-			<h1><a href="/">IP</a></h1>
-		</header>
-
-		<div class="container-fluid" id="main" role="main">
-			<?=$content?>
-		</div>
-		
-		<footer>
-		
-		</footer>
-		
-	</div>
+<div class="container">
+	<?=$content?>
+</div>
 
 </body>
 </html>

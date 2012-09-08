@@ -2,5 +2,7 @@
 <config>
 	<routes>
 		<route match="/" last="true">/default/index</route>
+		<route match="/docs" last="true">/default/docs</route>
+		<route match="/docs/(.+)" last="true">/default/docs/\1</route>
 	</routes>
 </config>
