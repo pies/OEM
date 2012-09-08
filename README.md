@@ -20,7 +20,7 @@ curve, documentation, and easy to use features.
 
 As of August 2012 the project has just started, although the code has been 
 already used in several projects of my own. If you wish to contribute, please 
-use Github https://github.com/pies/OEM-3 . Thanks and good luck :)
+use Github https://github.com/pies/OEM . Thanks and good luck :)
 
 My name is Michal Tatarynowicz, I'm a web developer. In the past I've started 
 and lead the CakePHP project.
