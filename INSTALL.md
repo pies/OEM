@@ -5,7 +5,7 @@
 An OEM installation supports multiple sites running within the same file structure. 
 The default app is called Site and its files are in the `/php/App/Site` 
 directory. Each installation has a main configuration file, `/php/config.xml`, 
-as well as an app-specific configuration file, which in the case of the Site app 
+as well as app-specific configuration files, which in the case of the Site app 
 is located at `/php/App/Site/config.xml`. The contents of the main configuration 
 file are overwriten by the contents of app-specific configuration file. For 
 example, if the main configuration file contains:

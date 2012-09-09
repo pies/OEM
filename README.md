@@ -16,7 +16,7 @@ yourself — I don’t mind.
 If you’re an inexperienced PHP web developer, you are encouraged to look around 
 and poke at things, but please consider a more mainstream framework (like Zend 
 Framework, CakePHP, or Symphony) that will usually provide a gentler learning 
-curve, documentation, and easy to use features.
+curve, better documentation, and easy to use features.
 
 As of August 2012 the project has just started, although the code has been 
 already used in several projects of my own. If you wish to contribute, please 
