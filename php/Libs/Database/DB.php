@@ -19,6 +19,22 @@ class DB {
 	 */
 
 	/**
+	 * Parses the configuration to extract the appropriate settings.
+	 */
+	static public function config($config) {
+			$port = $config->port? ";port={$config->port}": '';
+			$type = $config['type']? $config['type']: 'mysql';
+			$conn  = "{$type}:host={$config->host};dbname={$config->name}{$port}";
+			$login = "{$config->login}";
+			$pass  = "{$config->password}";
+			$opts  = array(
+				PDO::ATTR_PERSISTENT => (bool) @$config['persistent'],
+				PDO::ATTR_TIMEOUT => 2,
+			);
+			return compact('conn', 'login', 'pass', 'opts', 'type');
+	}
+	
+	/**
 	 * Connects to the database
 	 *
 	 * @param XML $config Database-related piece of config.xml
@@ -31,21 +47,14 @@ class DB {
 		}
 
 		try {
-			$port = $config->port? ";port={$config->port}": '';
-			$type = $config['type']? $config['type']: 'mysql';
-			$conn  = "{$type}:host={$config->host};dbname={$config->name}{$port}";
-			$login = "{$config->login}";
-			$pass  = "{$config->password}";
-			$opts  = array(
-				PDO::ATTR_PERSISTENT => (bool) @$config['persistent'],
-				PDO::ATTR_TIMEOUT => 2,
-			);
-			
-			self::$pdo = new PDO($conn, $login, $pass, $opts);
-			if ($type == 'mysql') self::query("SET NAMES utf8");
+			$settings = static::config($config);
+			self::$pdo = new PDO($settings['conn'], $settings['login'], $settings['pass'], $settings['opts']);
+			if ($settings['type'] == 'mysql') {
+				self::query("SET NAMES utf8");
+			}
 			return self::$pdo;
 		}
-		catch (Exception $e) {
+		catch (\PDOException $e) {
 			throw new DBException("Can't connect to database: " . $e->getMessage(), E_USER_ERROR);
 		}
 	}

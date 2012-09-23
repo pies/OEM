@@ -7,7 +7,7 @@ use Core\XML;
 class DefaultController extends AppController {
 
 	public function index() {
-		return $this->docs();
+		return $this->render('Page/Index');
 	}
 	
 	public function docs() {

@@ -1,11 +1,11 @@
 <?=$this->render('Page/Docs/Menu')?>
 
-<ul class="nav nav-list" style="width: 150px; position: fixed; top: 65px;">
-  <li class="nav-header">Choose topic:</li>
-  <li><a href="#config-files">Config files</a></li>
-  <li><a href="#database">Database</a></li>
+<ul class="nav nav-list affix-top" style="width: 150px;" data-spy="affix" data-offset-top="0">
+	<li class="nav-header">Choose topic:</li>
+	<li><a href="#config-files">Config files</a></li>
+	<li><a href="#database">Database</a></li>
 </ul>
 
 <div style="margin-left: 200px">
-<?=markdown_file(DIR_ROOT.'/INSTALL.md')?>
+	<?=markdown_file(DIR_ROOT.'/INSTALL.md')?>
 </div>

@@ -1,3 +1,16 @@
 <?=$this->render('Page/Docs/Menu')?>
 
-<?=markdown_file(DIR_ROOT . '/README.md') ?>
+<?=markdown_file(DIR_ROOT.'/README.md') ?>
+
+<h2>Application status</h2>
+
+<dl>
+	<dt>Database</dt>
+	<dd><?=$this->render('Page/Docs/Test/Database')?></dd>
+	
+	<dt>Logs directory</dt>
+	<dd><?=$this->render('Page/Docs/Test/WritableDirectory', array('directory'=>DIR_LOGS))?></dd>
+	
+	<dt>Temporary directory</dt>
+	<dd><?=$this->render('Page/Docs/Test/WritableDirectory', array('directory'=>DIR_TMP))?></dd>
+</dl>

@@ -400,7 +400,7 @@ class Framework {
 	}
 
 	
-	protected static function DatabaseConfiguration() {
+	public static function DatabaseConfiguration() {
 		return IS_LIVE?
 			self::Config()->database->live:
 			self::Config()->database->dev;
@@ -414,7 +414,16 @@ class Framework {
 	 */
 	protected static function Database() {
 		$config = static::DatabaseConfiguration();
-		return $config? DB::connect($config): false;
+		if (!$config) return false;
+		
+		try {
+			return DB::connect($config);
+		}
+		catch (\Database\DBException $e) {
+			$settings = DB::config($config);
+			debug("Could not connect to the database {$settings['conn']}.");
+			return false;
+		}
 	}
 
 	/**
