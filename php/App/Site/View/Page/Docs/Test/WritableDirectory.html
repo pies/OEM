@@ -1,4 +1,4 @@
-<? if (file_exists($directory)): ?>
+<? if (!file_exists($directory)): ?>
 The logs directory - <code><?=$directory?></code> does not exist. Please create it and make sure it writable by the application.
 
 <? elseif (!is_writable($directory)): ?>

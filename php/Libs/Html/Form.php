@@ -154,7 +154,9 @@ class Form {
 		$attr['name'] = $name;
 		$attr['value'] = $value;
 		if ($this->value($name) == $value) $attr['checked'] = 'checked';
-		return $this->element('label', array(), $this->element('input', $attr).' '.$label);
+		return $label? 
+			$this->element('label', array(), $this->element('input', $attr).' '.$label):
+			$this->element('input', $attr);
 	}
 	
 	public function file($name, $attr=array()) {
@@ -182,8 +184,8 @@ class Form {
 		return $this->element('button', $attr, $label);
 	}
 
-	public function label($name, $label) {
-		$attr = array('for' => $name);
+	public function label($name, $label, $attr=array()) {
+		$attr['for'] = $name;
 		return $this->element('label', $attr, $label);
 	}
 }

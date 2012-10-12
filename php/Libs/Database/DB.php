@@ -98,6 +98,9 @@ class DB {
 	}
 
 	static public function quote($value) {
+		if (is_object($value) && get_class($value) == 'Database\\DBExpression') {
+			return (string) $value;
+		}
 		return is_array($value)?
 			array_map(array('self', 'quote'), $value):
 			self::$pdo->quote($value);
@@ -141,6 +144,9 @@ class DB {
 		return self::quoteField($field)." {$sign} ".self::quote($value);
 	}
 
+	static public function expr($str) {
+		return new DBExpression($str);
+	}
 
 	/*
 	 * READING
@@ -270,6 +276,20 @@ class DB {
 	}
 
 
+}
+
+class DBExpression {
+	
+	private $str;
+	
+	public function __construct($str) {
+		$this->str = $str;
+	}
+	
+	public function __toString() {
+		return $this->str;
+	}
+	
 }
 
 class DBException extends \Exception {}
