@@ -175,6 +175,7 @@ border:2px solid {$color};
 margin-bottom:1em;
 font-size:14px;
 font-family:Consolas,monospace;
+line-height:120%;
 CSS;
 		$tag_html = ($tag == 'pre')? "pre style=\"{$style}\"": $tag;
 		print "<{$tag_html}>{$title}{$msg}</{$tag}>";

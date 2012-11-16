@@ -134,19 +134,23 @@ class Framework {
 
 	protected static function ExtensionToContentType($ext) {
 		$types = array(
+			'bin'  => 'application/octet-stream',
+			'css'  => 'text/css',
+			'csv'  => 'text/csv',
+			'flv'  => 'video/x-flv',
+			'gif'  => 'image/gif',
 			'html' => 'text/html',
+			'ico'  => 'image/x-icon',
+			'jpg'  => 'image/jpeg',
+			'js'   => 'application/javascript',
+			'json' => 'application/json',
+			'pdf'  => 'application/pdf',
+			'png'  => 'image/png',
+			'swf'  => 'application/x-shockwave-flash',
 			'txt'  => 'text/plain',
 			'text' => 'text/plain',
 			'xml'  => 'text/xml',
-			'css'  => 'text/css',
-			'flv'  => 'video/x-flv',
-			'swf'  => 'application/x-shockwave-flash',
-			'png'  => 'image/png',
-			'jpg'  => 'image/jpeg',
-			'gif'  => 'image/gif',
-			'json' => 'application/json',
-			'ico'  => 'image/x-icon',
-			'pdf'  => 'application/pdf',
+			'zip'  => 'application/zip',
 		);
 		return isset($types[$ext])? $types[$ext]: false;
 	}
@@ -321,9 +325,9 @@ class Framework {
 	 * @return mixed Root URL of this site or false.
 	 */
 	public static function UrlRoot() {
-		$get  = _GET('URL'); // is urldecoded by default
-		$uri  = urldecode(_SERVER('REQUEST_URI'));
-		$self = _SERVER('PHP_SELF');
+		$get  = isset($_GET['URL'])? $_GET['URL']: null; // is urldecoded by default
+		$uri  = urldecode(isset($_SERVER['REQUEST_URI'])? $_SERVER['REQUEST_URI']: null);
+		$self = isset($_SERVER['PHP_SELF'])? $_SERVER['PHP_SELF']: null;
 
 		if (!$uri) return false;
 
@@ -357,7 +361,7 @@ class Framework {
 	 * @uses static::UrlRoot()
 	 * @return string Current URL.
 	 */
-	private static function UrlCurrent() {
+	protected static function UrlCurrent() {
 		$url = @$_SERVER['REQUEST_URI'];
 		if (!$url) return false;
 

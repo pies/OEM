@@ -24,7 +24,8 @@ class Site extends \Core\Framework {
 
     static $DefaultApp = 'Site';
 	
-	protected static $locale = 'pl_PL.UTF8';
+	public static $locale = 'pl_PL.UTF8';
+	public static $encoding = 'UTF-8';
 	
 	public static function Date($utime=false) {
 		return date(Site::DateFormat, $utime);

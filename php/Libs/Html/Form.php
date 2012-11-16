@@ -35,10 +35,20 @@ class Form {
 		return isset($this->data[$name])? $this->data[$name]: null;
 	}
 	
+	protected function specialchars($string) {
+		$pairs = array(
+			'&' => '&amp;',
+			'"' => '&quot;',
+			'<' => '&lt;',
+			'>' => '&gt;',
+		);
+		return str_replace(array_keys($pairs), array_values($pairs), $string);
+	}
+	
 	protected function attributes($pairs) {
 		$out = array();
 		foreach ($pairs as $key=>$value) {
-			$out[] = $key.'="'.htmlspecialchars($value).'"';
+			$out[] = $key.'="'.$this->specialchars($value).'"';
 		}
 		return $out? ' '.join(' ', $out): '';
 	}
