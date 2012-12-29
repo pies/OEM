@@ -107,6 +107,10 @@ class DB {
 	}
 
 	static public function quoteField($name) {
+		if (is_string($name) && strpos($name, '.')) {
+			return join('.', self::quoteField(explode('.', $name)));
+		}
+		
 		return is_array($name)?
 			array_map(array('self', 'quoteField'), $name):
 			'`'.str_replace('`', '``', $name).'`';
@@ -135,13 +139,25 @@ class DB {
 
 		$out = array();
 		foreach ($cond as $key => $value) {
-			$out[] = self::quoteCondition($key, $value);
+			if (is_array($value)) {
+				$sign = $value[1];
+				$value = $value[0];
+			}
+			else {
+				$sign = '=';
+			}
+			$out[] = self::quoteCondition($key, $value, $sign);
 		}
 		return '('.join(') AND (', $out).')';
 	}
 
 	static protected function quoteCondition($field, $value, $sign='=') {
-		return self::quoteField($field)." {$sign} ".self::quote($value);
+		$quoted_field = self::quoteField($field);
+		$quoted_value = self::quote($value);
+		if (is_array($quoted_value)) {
+			$quoted_value = '('.join(',', $quoted_value).')';
+		}
+		return "{$quoted_field} {$sign} {$quoted_value}";
 	}
 
 	static public function expr($str) {
@@ -215,7 +231,23 @@ class DB {
 	static public function count($table, $cond=null) {
 		return self::value($table, 'COUNT(*)', $cond);
 	}
+	
+	/*
+	 * TRANSACTION
+	 */
 
+	static public function begin() {
+		return DB::$pdo->beginTransaction();
+	}
+	
+	static public function commit() {
+		return DB::$pdo->commit();
+	}
+	
+	static public function rollback() {
+		return DB::$pdo->rollBack();
+	}
+	
 	/*
 	 * WRITING
 	 */
@@ -245,7 +277,7 @@ class DB {
 	static public function update($table, $cond, $data) {
 		$pairs = self::updatePairs($data);
 		$cond = self::conditionsToSql($cond);
-		$sql = "UPDATE `{$table}` SET {$pairs} WHERE {$cond};";
+		$sql = "UPDATE ".self::quoteField($table)." SET {$pairs} WHERE {$cond};";
 		return static::exec($sql);
 	}
 

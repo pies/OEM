@@ -5,13 +5,24 @@ use \Imagick;
 
 class PhotoResizeImagick {
 	
+	/**
+	 * @var Imagick
+	 */
 	private $img;
+	
 	private $filter = Imagick::FILTER_CATROM;
 	
 	public function __construct($path) {
 		$this->img = new \Imagick(realpath($path));
 	}
 	
+	/**
+	 * @param int $new_x
+	 * @param int $new_y
+	 * @param string $method
+	 * @param string $type
+	 * @return Imagick
+	 */
 	public function get($new_x=0, $new_y=0, $method='x', $type=false) {
 		if ($type) {
 			$this->img->setImageFormat($type);

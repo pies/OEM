@@ -32,6 +32,13 @@ class Form {
 	}
 
 	protected function value($name) {
+		// checkbox
+		if (is_array($name)) {
+			return isset($this->data[$name[0]])? 
+				in_array($name[1], $this->data[$name[0]]): 
+				null;
+		}
+		
 		return isset($this->data[$name])? $this->data[$name]: null;
 	}
 	
@@ -96,7 +103,7 @@ class Form {
 
 	
 	public function start($action=null, $method='post', $attr=array()) {
-		$attr['action'] = $action? $action: URL_CURRENT;
+		$attr['action'] = $action === null? URL_CURRENT: $action;
 		
 		if ($method == 'file') {
 			$attr['enctype'] = 'multipart/form-data';
@@ -153,7 +160,13 @@ class Form {
 
 	public function checkbox($name, $label=false, $attr=array()) {
 		$attr['type'] = 'checkbox';
-		$attr['name'] = $name;
+		if (is_array($name)) {
+			$attr['name'] = $name[0].'[]';
+			$attr['value'] = $name[1];
+		}
+		else {
+			$attr['name'] = $name;
+		}
 		if ($this->value($name)) $attr['checked'] = 'checked';
 		$checkbox = $this->element('input', $attr);
 		return $label? $this->element('label', array(), "{$checkbox} {$label}"): $checkbox;
@@ -179,7 +192,9 @@ class Form {
 		$attr['name'] = $name;
 		$attr['cols'] = $cols;
 		$attr['rows'] = $rows;
-		$value = $this->value($name);
+		$value = (isset($attr['value']) && $attr['value'] !== false)?
+			$attr['value']:
+			$this->value($name);
 		return $this->element('textarea', $attr, htmlspecialchars($value));
 	}
 

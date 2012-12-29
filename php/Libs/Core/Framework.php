@@ -147,8 +147,8 @@ class Framework {
 			'pdf'  => 'application/pdf',
 			'png'  => 'image/png',
 			'swf'  => 'application/x-shockwave-flash',
-			'txt'  => 'text/plain',
 			'text' => 'text/plain',
+			'txt'  => 'text/plain',
 			'xml'  => 'text/xml',
 			'zip'  => 'application/zip',
 		);

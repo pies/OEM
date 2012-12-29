@@ -30,7 +30,14 @@ function form($data=array(),$errors=array(),$id_prefix='') {
 }
 
 function render($file, $data=array(), $prefix=false) {
-	$path = DIR_VIEWS."/{$file}.html";
+	if ($file[0] == '~') {
+		$file = substr($file, 2);
+		$path = DIR_SHARED."/View/{$file}.html";
+	}
+	else {
+		$path = DIR_VIEWS."/{$file}.html";
+	}
+
 	return View::Render($path, $data, $prefix);
 }
 
@@ -42,6 +49,23 @@ function email($to_name, $to_email, $subject, $body) {
 
 function pct($num, $total) {
 	return round(100*$num/$total).'%';
+}
+
+function to_bytes($str) {
+    $str = strtoupper(trim($str));
+	
+	if (substr($str, -1) == 'B') {
+		$str = substr($str, 0, -1);
+	}
+	
+	switch (substr($str, -1)) {
+		case 'K': $mul = 1024;       $str = substr($str, 0, -1); break;
+		case 'M': $mul = 1048576;    $str = substr($str, 0, -1); break;
+		case 'G': $mul = 1073741824; $str = substr($str, 0, -1); break;
+		default:  $mul = 1;
+	}
+	
+	return (int) ($str * $mul);
 }
 
 /**
@@ -77,27 +101,33 @@ function data_uri($contents, $mime) {
   return "data:{$mime};base64,".base64_encode($contents);
 }
 
-function _GET($key, $default=null) {
+function _GET($key=null, $default=null) {
+	if (!$key) return $_GET;
 	return isset($_GET[$key])? $_GET[$key]: $default;
 }
 
-function _POST($key, $default=null) {
+function _POST($key=null, $default=null) {
+	if (!$key) return $_POST;
 	return isset($_POST[$key])? $_POST[$key]: $default;
 }
 
-function _REQUEST($key, $default=null) {
+function _REQUEST($key=null, $default=null) {
+	if (!$key) return $_REQUEST;
 	return isset($_REQUEST[$key])? $_REQUEST[$key]: $default;
 }
 
-function _SERVER($key, $default=null) {
+function _SERVER($key=null, $default=null) {
+	if (!$key) return $_SERVER;
 	return isset($_SERVER[$key])? $_SERVER[$key]: $default;
 }
 
-function _COOKIE($key, $default=null) {
+function _COOKIE($key=null, $default=null) {
+	if (!$key) return $_COOKIE;
 	return isset($_COOKIE[$key])? $_COOKIE[$key]: $default;
 }
 
-function _FILES($key, $default=null) {
+function _FILES($key=null, $default=null) {
+	if (!$key) return $_FILES;
 	return isset($_FILES[$key])? $_FILES[$key]: $default;
 }
 

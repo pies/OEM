@@ -83,6 +83,30 @@ class Arr {
 	}
 
 	/**
+	 * Reorganize a 2D array, using a value within internal array
+	 * as key and another value as new value.
+	 *
+	 * @param array $array
+	 * @param mixed $key1
+	 * @param mixed $key2
+	 * @param bool $skip_duplicates
+	 * @return array
+	 */
+	public static function organizeExtract($array, $key1, $key2, $skip_duplicates=false) {
+		$out = array();
+		foreach ($array as $value) {
+			if (isset($value[$key1]) && isset($value[$key2])) {
+				$new_key = $value[$key1];
+				$new_value = $value[$key2];
+				if (!(isset($out[$new_key]) && $skip_duplicates)) {
+					$out[$new_key] = $new_value;
+				}
+			}
+		}
+		return $out;
+	}
+
+	/**
 	 * Pass each value in an array trough a callback function. It passes both
 	 * the value and the key to the callback, as opposed to array_map().
 	 *

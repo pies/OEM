@@ -1,11 +1,14 @@
 <?php
 namespace Core;
 
+use Site;
+
 class Controller {
 
 	public $url;
 	public $skipLayout = false;
 	public $layoutName = 'Layout';
+	public $layoutData = array();
 
 	protected $title = 'Welcome';
 
@@ -14,7 +17,14 @@ class Controller {
 	}
 
 	public function render($name, $_DATA_=false, $_PREFIX_=false) {
-		$_PATH_ = DIR_VIEWS."/{$name}.html";
+		if ($name[0] == '~') {
+			$name = substr($name, 1);
+			$_PATH_ = DIR_SHARED."/View/{$name}.html";
+		}
+		else {
+			$_PATH_ = DIR_VIEWS."/{$name}.html";
+		}
+		
 		if (!is_readable_file($_PATH_)) {
 			new \Exception("Could not read file '{$_PATH_}'");
 		}
@@ -28,8 +38,8 @@ class Controller {
 			ob_get_clean();
 	}
 
-	public function applyLayout($title, $content, $url) {
-		return $this->skipLayout? $content: $this->render($this->layoutName, compact('title', 'content', 'url'), URL_ROOT);
+	public function applyLayout($data=array()) {
+		return $this->skipLayout? $data['content']: $this->render($this->layoutName, $data, URL_ROOT);
 	}
 
 	public function setTitle($title, $no_template=false) {
@@ -56,6 +66,12 @@ class Controller {
 	protected function error404($message=false) {
 		header("HTTP/1.0 404 Not Found");
 		return render('404', compact('message'));
+	}
+	
+	protected function outputJson($out) {
+		$this->skipLayout = true;
+		Site::ContentType('json');
+		return json_encode($out);
 	}
 	
 

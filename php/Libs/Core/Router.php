@@ -20,11 +20,10 @@ class Router {
 		
 		$url = $this->resolve($original_url);
 		$request = $this->request($url, $default_controller, $default_action);
-
+		
 		try {
 			$controller = new $request['class']($original_url);
 			$controller->url = $original_url;
-
 			if (!method_exists($controller, $request['action'])) return $this->error404();
 
 			$content = call_user_func_array(array($controller, $request['action']), $request['params']);
@@ -40,9 +39,12 @@ class Router {
 		}
 
 		// Wrap in template
-		$title = empty($controller->title)? (string) config()->site->title: $controller->title;
-		$description = empty($controller->description)? (string) config()->site->description: $controller->description;
-		return $controller->applyLayout($title, $content, $original_url, $description);
+		$data = empty($controller->layoutData)? array(): $controller->layoutData;
+		$data['title'] = empty($controller->title)? (string) config()->site->title: $controller->title;
+		$data['description'] = empty($controller->description)? (string) config()->site->description: $controller->description;
+		$data['url'] = $original_url;
+		$data['content'] = $content;
+		return $controller->applyLayout($data);
 	}
 
 	protected function matches($url) {
@@ -56,6 +58,7 @@ class Router {
 	}
 
 	protected function resolve($url) {
+
 		$this->previous_routes = array();
 		while ($new = $this->matches($url)) {
 			list($new_route, $new_url) = $new;
@@ -63,12 +66,13 @@ class Router {
 				throw new RouterCircularRoutingException($new_url, $this->previous_routes, $this->routes);
 			}
 			
-			$continue = (string) $new_route['continue'];
-			if (empty($continue) || $continue=='false') return $new_url;
+			$last = (string) $new_route['last'];
+			if ($last == 'true') return $new_url;
 
 			$this->previous_routes[] = $new_url;
 			$url = $new_url;
 		}
+
 		return $url;
 	}
 
