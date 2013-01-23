@@ -18,7 +18,7 @@ class View {
 	 * @param string $_PATH_ Path to the PHP file to render.
 	 * @param array $_DATA_ Variables to introduce into local scope.
 	 * @param string $_PREFIX_ String with which to prefix local URLs in HTML.
-	 * @return string The output.
+	 * @return string Rendered template contents
 	 */
 	static public function render($_PATH_, $_DATA_=false, $_PREFIX_=false) {
 		if (!is_readable_file($_PATH_)) {

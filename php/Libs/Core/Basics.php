@@ -172,7 +172,11 @@ function place() {
 	return $places;
 }
 
-// Pretty-prints a variable
+/**
+ * Pretty-prints a variable.
+ * 
+ * @param mixed $var Variable to print
+ */
 function debug($var) {
 	$place = place();
 	$title = join(' &larr; ', $place);
@@ -182,7 +186,14 @@ function debug($var) {
 	}
 }
 
-// Prints a CSS-independent text frame
+/**
+ * Prints a CSS-independent text frame.
+ * 
+ * @param string $msg Main message
+ * @param string $title Message title
+ * @param string $color Frame color as CSS hex (i.e. #F80)
+ * @param string $tag HTML tag to use for the content frame
+ */
 function output($msg, $title=false, $color='#F88', $tag='pre') {
 	$plain = !ini_get('html_errors');
 	
