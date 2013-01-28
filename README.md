@@ -23,4 +23,4 @@ already used in several projects of my own. If you wish to contribute, please
 use [Github](https://github.com/pies/OEM). Thanks and good luck :)
 
 My name is Michal Tatarynowicz, I'm a web developer. In the past I've started 
-and lead the CakePHP project.
+and led the CakePHP project.
