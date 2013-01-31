@@ -21,11 +21,24 @@ class Site extends \Core\Framework {
 		'www.example.com'   => 'Site',
 		'admin.example.com' => 'Admin',
 	);
-
-    static $DefaultApp = 'Site';
 	
 	public static $locale = 'pl_PL.UTF8';
 	public static $encoding = 'UTF-8';
+
+	/*
+	 * Uncomment this if you want to use an URL (i.e. www.site.com/admin) to
+	 * access the admin portion of the site, instead of using a domain 
+	 * (i.e. admin.site.com).
+
+	const AdminPrefix = '/admin';
+
+	protected static function ResolveApp() {
+		$url = self::UrlCurrent();
+		return strpos($url, self::AdminPrefix) === 0? 'Admin': self::DefaultApp;
+	}
+
+	 * 
+	 */
 	
 	public static function Date($utime=false) {
 		return date(Site::DateFormat, $utime);

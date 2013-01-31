@@ -2,7 +2,7 @@
 
 <p>The page you requested does not exist.</p>
 
-<? if ($message): ?>
+<? if (DEBUG && $message): ?>
 <p><small>Additional error message: <?=$message?></small></p>
 <? endif ?>
 

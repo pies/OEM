@@ -6,14 +6,11 @@
 	<title><?=config()->site->title?></title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<!--link rel="stylesheet" href="/css/site.css" type="text/css" /-->
-	<link rel="stylesheet" href="/css/bootstrap/bootstrap.less" type="text/css" />
+	<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="/css/admin.less" type="text/css" />
 	
 	<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/js/bootstrap-colorpicker.js"></script>
-	<script type="text/javascript" src="/js/jquery.nestedAccordion.js"></script>
-	<script type="text/javascript" src="/js/jquery.selectWithNewOption.js"></script>
 </head>
 <body>
 
@@ -22,7 +19,7 @@
 		<? $nav = function($title, $url) {
 			$active = URL_CURRENT == $url || strpos(URL_CURRENT, $url.'/') === 0;
 			$class = $active? ' class="active"': '';
-			return "<li{$class}><a href=\"{$url}\">{$title}</a></li>";
+			return "<li{$class}><a href=\"".Site::AdminPrefix."{$url}\">{$title}</a></li>";
 		} ?>
 
 		<? if (!empty($_SESSION['admin'])): ?>
@@ -35,13 +32,13 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a class="brand" href="/">Interior Park</a>
+					<a class="brand" href="<?=Site::AdminPrefix?>/">OEM Admin</a>
 					<div class="nav-collapse">
 						<ul class="nav">
-							<?=$nav('Produkty', '/product')?>
+							<?=$nav('Set up the database', '/setup')?>
 						</ul>
 						<ul class="nav pull-right">
-	   						<li><a href="/default/logout">Wyloguj się</a></li>
+	   						<li><a href="/default/logout">Logout</a></li>
 						</ul>
 					</div>
 				</div>

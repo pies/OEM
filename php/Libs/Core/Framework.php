@@ -21,7 +21,7 @@ class Framework {
 
 	static $SwitchDomain = array();
 
-	static $DefaultApp = 'Site';
+	const DefaultApp = 'Site';
 	static $ResolveApp = array();
 	
 	public static function Init($root_dir) {
@@ -83,7 +83,7 @@ class Framework {
 		$host = $_SERVER['HTTP_HOST'];
 
 		return empty(static::$ResolveApp[$host])?
-			static::$DefaultApp:
+			static::DefaultApp:
 			static::$ResolveApp[$host];
 	}
 	

@@ -9,6 +9,7 @@ class DefaultController extends AppController {
 
 	public function login() {
 		if (isset($_POST['login'])) {
+			sleep(2);
 			$users = \Site::Users();
 			$user = $users->find("./user[@login='{$_POST['login']}']");
 			if ($user) {
