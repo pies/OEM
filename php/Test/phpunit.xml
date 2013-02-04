@@ -1,0 +1,11 @@
+<phpunit backupGlobals="true"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap.php"
+         cacheTokens="false"
+         colors="true">
+    <testsuites>
+        <testsuite name="OEM Libs Test Suite">
+            <directory suffix="Test.php">Libs</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

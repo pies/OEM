@@ -79,7 +79,7 @@ class Framework {
 	}
 	
 	protected static function ResolveApp() {
-		if (empty($_SERVER['HTTP_HOST'])) return static::$DefaultApp;
+		if (empty($_SERVER['HTTP_HOST'])) return static::DefaultApp;
 		$host = $_SERVER['HTTP_HOST'];
 
 		return empty(static::$ResolveApp[$host])?
@@ -273,6 +273,7 @@ class Framework {
 	 */
 	private static function IncludePath() {
 		set_include_path(join(PATH_SEPARATOR, array(
+			get_include_path(),
 			DIR_LIBS,
 			DIR_PHP,
 			DIR_LIBS.'/Vendor',
