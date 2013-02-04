@@ -96,7 +96,10 @@ class Str {
 		for ($x=0; $x < $len; $x++) {
 			$chars_array[] = preg_quote(self::sub($chars, $x, 1));
 		}
-		$encoded_char_list = implode("|", array_merge(array("\s", "\t", "\n", "\r", "\0", "\x0B"), $chars_array));
+		if (empty($chars_array)) {
+			$chars_array = array("\s", "\t", "\n", "\r", "\0", "\x0B");
+		}
+		$encoded_char_list = implode("|", $chars_array);
 		$string = mb_ereg_replace("^($encoded_char_list)*", "", $string);
 		$string = mb_ereg_replace("($encoded_char_list)*$", "", $string);
 		return $string;
@@ -172,11 +175,11 @@ class Str {
 
 	public static function endsWith($str, $needle) {
 		$len = static::len($str);
-		$pos = static::pos($str, $needle);
-		return $pos == ($len - static::len($needle));
+		$expected = static::sub($str, $len - static::len($needle));
+		return $expected == $needle;
 	}
 
-	public static function preg_replace($str, $pattern, $replacement, $modifiers='ue') {
+	public static function preg_replace($str, $pattern, $replacement, $modifiers='u') {
 		$pairs = array($pattern.$modifiers => $replacement);
 		return static::pregReplacePairs($str, $pairs);
 	}
