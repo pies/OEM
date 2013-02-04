@@ -1,6 +1,8 @@
 <?php
 namespace OEM\Misc;
 
+use \Iterator;
+
 /**
  * @package Misc
  */

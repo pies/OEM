@@ -1,14 +1,15 @@
 <?php
 
-set_include_path(join(PATH_SEPARATOR, array(
-	get_include_path(),
-	
-)));
+mb_internal_encoding('UTF-8');
 
-define('OEM_LIBS_PATH', dirname(dirname(__FILE__)).'\Libs');
+define('DEBUG', false);
+define('DIR_ROOT', dirname(dirname(dirname(__FILE__))));
+define('DIR_PHP', DIR_ROOT.'\php');
+define('DIR_LIBS', DIR_PHP.'\Libs');
+define('DIR_LOGS', DIR_PHP.'\Logs');
 
 spl_autoload_register(function($class){
-	$path = OEM_LIBS_PATH.'\\'.$class.'.php';
+	$path = DIR_LIBS.'\\'.$class.'.php';
 	if (is_file($path)) {
 		include ($path);
 	}

@@ -1,5 +1,7 @@
 <?php
-namespace OEM\Misc;
+namespace Misc;
+
+use \Iterator;
 
 /**
  * Implementation of simple day iterator
