@@ -14,14 +14,14 @@ class StrTest extends PHPUnit_Framework_TestCase {
 		// pos and related
 		$this->assertEquals(2, Str::pos($input, 'ć'));
 		$this->assertEquals(7, Str::pos($input, 'ć', 4));
-		$this->assertEquals(true, Str::contains($input, 'ć'));
-		$this->assertEquals(false, Str::contains($input, 'ź'));
-		$this->assertEquals(true, Str::startsWith($input, 'Ą'));
-		$this->assertEquals(true, Str::startsWith($input, 'Ąbć'));
-		$this->assertEquals(false, Str::startsWith($input, 'Abc'));
-		$this->assertEquals(true, Str::endsWith($input, 'ć'));
-		$this->assertEquals(true, Str::endsWith($input, 'ęfć'));
-		$this->assertEquals(false, Str::endsWith($input, 'f'));
+		$this->assertTrue(Str::contains($input, 'ć'));
+		$this->assertFalse(Str::contains($input, 'ź'));
+		$this->assertTrue(Str::startsWith($input, 'Ą'));
+		$this->assertTrue(Str::startsWith($input, 'Ąbć'));
+		$this->assertFalse(Str::startsWith($input, 'Abc'));
+		$this->assertTrue(Str::endsWith($input, 'ć'));
+		$this->assertTrue(Str::endsWith($input, 'ęfć'));
+		$this->assertFalse(Str::endsWith($input, 'f'));
 		
 		// case-related
 		$this->assertEquals('ĄBĆ DĘFĆ', Str::upper($input));

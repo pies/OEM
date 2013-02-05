@@ -74,7 +74,8 @@ class Arr {
 		foreach ($array as $value) {
 			if (isset($value[$key])) {
 				$new_key = $value[$key];
-				if (!(isset($out[$new_key]) && $skip_duplicates)) {
+				$exists = isset($out[$new_key]);
+				if (!$exists || !$skip_duplicates) {
 					$out[$new_key] = $value;
 				}
 			}
@@ -149,7 +150,14 @@ class Arr {
 		return $obj;
 	}
 
-	public function join($array, $glue='') {
+	/**
+	 * Joins an array into a string using optional glue.
+	 * 
+	 * @param array $array
+	 * @param string $glue
+	 * @return string
+	 */
+	public static function join($array, $glue='') {
 		return join($glue, $array);
 	}
 

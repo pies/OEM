@@ -7,7 +7,7 @@
 	verbose="true">
 	<testsuites>
 		<testsuite name="OEM Libs Test Suite">
-			<directory suffix="Test.php">Libs</directory>
+			<directory suffix=".php">Libs</directory>
 		</testsuite>
 	</testsuites>
 
